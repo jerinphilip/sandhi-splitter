@@ -23,6 +23,17 @@ The module supports both python2.7 and python3. To install:
     cd sandhi-splitter
     python setup.py install
 
+For development purposes, you can use a virtualenv.
+
+.. code-block:: bash
+
+    git clone https://github.com/libindic/sandhi-splitter.git
+    cd sandhi-splitter
+    virtualenv env
+    . env/bin/activate
+    python setup.py install
+
+
 
 Training and Testing Model
 --------------------------
