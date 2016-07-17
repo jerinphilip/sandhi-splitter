@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>sandhi-splitter &mdash; sandhi-splitter 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="sandhi-splitter 0.0.1 documentation" href="#" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sandhi-splitter">
+<h1>sandhi-splitter<a class="headerlink" href="#sandhi-splitter" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-design">
+<h2>Module Design<a class="headerlink" href="#module-design" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<img alt="_images/libindic-uml.png" src="_images/libindic-uml.png" />
+</div>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>The module supports both python2.7 and python3. To install:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/libindic/sandhi-splitter.git
+<span class="nb">cd</span> sandhi-splitter
+python setup.py install
+</pre></div>
+</div>
+</div>
+<div class="section" id="training-and-testing-model">
+<h2>Training and Testing Model<a class="headerlink" href="#training-and-testing-model" title="Permalink to this headline">¶</a></h2>
+<p>Two console scripts have been provided for training and testing purposes.
+Post installation, these can be used to generate and test models.</p>
+<p>Help has been provided in the scripts.</p>
+<div class="section" id="training">
+<h3>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sandhisplitter_train -h
+    usage: sandhisplitter_train <span class="o">[</span>-h<span class="o">]</span> -k DEPTH -s SKIP -i TRAINFILE -o MODELFILE
+
+    Train a model
+
+    optional arguments:
+      -h, --help            show this <span class="nb">help</span> message and <span class="nb">exit</span>
+      -k DEPTH, --depth DEPTH
+                                                    depth of the trie
+      -s SKIP, --skip SKIP  initial skip
+      -i TRAINFILE, --trainfile TRAINFILE
+                                                    path to training file
+      -o MODELFILE, --outputfile MODELFILE
+                                                    path to store model
+</pre></div>
+</div>
+</div>
+<div class="section" id="testing">
+<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sandhisplitter_benchmark_model -h
+    usage: sandhisplitter_benchmark_model <span class="o">[</span>-h<span class="o">]</span> -m MODELFILE -t TESTFILE -u OUTPUT
+
+    Test a model
+
+    optional arguments:
+      -h, --help            show this <span class="nb">help</span> message and <span class="nb">exit</span>
+      -m MODELFILE, --modelfile MODELFILE
+                                                    path to model file
+      -t TESTFILE, --testfile TESTFILE
+                                                    path to <span class="nb">test</span> file
+      -u OUTPUT, --output OUTPUT
+                                                    folder to store output
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="using-the-module">
+<h2>Using the module<a class="headerlink" href="#using-the-module" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sandhisplitter</span> <span class="k">import</span> <span class="n">Sandhisplitter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">Sandhisplitter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;ആദ്യമെത്തി&#39;</span><span class="p">)</span>
+<span class="go">([&#39;ആദ്യം&#39;, &#39;എത്തി&#39;], [4])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;വയ്യാതെയായി&#39;</span><span class="p">)</span>
+<span class="go">([&#39;വയ്യാതെ&#39;, &#39;ആയി&#39;], [7])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;അവന്റെയാണ്&#39;</span><span class="p">)</span>
+<span class="go">([&#39;അവന്റെ&#39;, &#39;&#39;, &#39;ആണ്&#39;], [5, 6])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;എന്നെക്കൊണ്ടുവയ്യ&#39;</span><span class="p">)</span>
+<span class="go">([&#39;എന്നെക്കൊണ്ടുവയ്യ&#39;], [])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;ഇന്നത്തെക്കാലത്ത്&#39;</span><span class="p">)</span>
+<span class="go">([&#39;ഇന്നത്തെക്കാലത്ത്&#39;], [])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;എന്തൊക്കെയോ&#39;</span><span class="p">)</span>
+<span class="go">([&#39;എന്ത്&#39;, &#39;ഒക്കെയോ&#39;], [3])</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">sandhi-splitter</a><ul>
+<li><a class="reference internal" href="#module-design">Module Design</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#training-and-testing-model">Training and Testing Model</a><ul>
+<li><a class="reference internal" href="#training">Training</a></li>
+<li><a class="reference internal" href="#testing">Testing</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-the-module">Using the module</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Jerin Philip.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/index.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
