@@ -36,6 +36,7 @@ def main():
     model = Model(depth=args.depth, skip=args.skip)
     try:
         for line in data:
+            line = line.strip()
             line_number += 1
             word, splits, locs = extract(line)
             model.add_entry(word, splits, locs)

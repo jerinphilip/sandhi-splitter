@@ -19,7 +19,10 @@ def extract(line):
     # Split String, Location String
     ssplits, slocs = rest.split('|')
     splits = ssplits.split('+')
-    locs = map(int, slocs.split(','))
+    if slocs:
+        locs = map(int, slocs.split(','))
+    else:
+        locs = []
     return (word, splits, locs)
 
 

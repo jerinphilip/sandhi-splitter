@@ -36,6 +36,12 @@ class Model:
             self.left.add_word(first, flag[i])
             self.right.add_word(second, flag[i])
 
+        # Add the other pattern?
+        start = self.trim(word)
+        end = self.trim(word[::-1])
+        self.left.add_word(end, True)
+        self.right.add_word(start, True)
+
     def serialize(self):
         """serializes a model into a dictionary"""
         return {

@@ -1,10 +1,22 @@
 CHANGES
 =======
 
+* Minor readme edit
+* More data added
+* README updated
+* Sandhisplitter: Custom model
+* Improved tests
+* PostProcessor: Few more cases
+* open -> io.open
+* Test script argument -u -> -o, more suitable rename
+* Documentation Additions
+* Cleanup of data folder
+* benchmark_model output Folder in help changed to file
+* More data, updated ChangeLog
+* Joiner improvements and tests
 * Removed Testing.md and Training.md, index.rst updated
 * Pep8 fixes + python2-3 json fix
 * Adding documentation sources
-* No more output file in benchmark_model
 * Added combined
 * Initialized documentation using sphinx
 * fixed import util -> sandhisplitter.util
